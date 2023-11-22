@@ -1,11 +1,11 @@
+import { GetUnitsService } from './../../services/get-units.service';
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-forms',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: false,
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.scss'
 })
@@ -15,9 +15,11 @@ export class FormsComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private unitsService: GetUnitsService,
   ) {}
 
   ngOnInit(): void {
+   // this.unitsService.getAllUnits().subscribe(data => console.log(data))
     this.formGroup = this.formBuilder.group({
       hour: '',
       showClosed: true
