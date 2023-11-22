@@ -15,10 +15,14 @@ export class GetUnitsService {
   private filteredUnits: Location[] = [];
 
   constructor(private httpClient: HttpClient) {
-    return
+    this.httpClient.get<UnitsResponse>(this.apiUrl).subscribe(data => {
+      this.allUnitsSubject.next(data.locations);
+      this.filteredUnits = data.locations;
+    });
   }
 
   getAllUnits(): Observable<Location[]> {
+   
     return this.allUnits$;
   }
 
